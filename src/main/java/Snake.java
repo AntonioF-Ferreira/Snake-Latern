@@ -50,6 +50,16 @@ public class Snake extends Rectangle {
                     new TerminalPosition(pos.getX(), pos.getY()),
                     new TerminalSize(1, 1), ' ');
         }
+
+    }
+
+    public boolean death() {
+        for (int i = 1; i < this.tail.size(); i++) {
+            if (this.position.equals(this.tail.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

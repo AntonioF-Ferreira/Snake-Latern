@@ -61,6 +61,10 @@ public class Game {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#828282"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         f.show(graphics);
+        if (s.death()){
+            screen.close();
+            System.out.print("Game Over!");
+        }
         s.update();
         s.show(graphics);
         if (s.eat(f.getPosition())){
