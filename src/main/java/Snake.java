@@ -30,15 +30,7 @@ public class Snake extends Rectangle {
         position.setX(position.getX() + xspeed);
         position.setY(position.getY() + yspeed);
 
-        if (position.getX() > 30 - 1) {
-            position.setX(30 - 1);
-        } else if (position.getX() < 0) {
-            position.setX(0);
-        } else if (position.getY() > 30 - 1) {
-            position.setY(30 - 1);
-        } else if (position.getY() < 0) {
-            position.setY(0);
-        }
+        checkWalls();
 
     }
 
@@ -51,6 +43,19 @@ public class Snake extends Rectangle {
                     new TerminalSize(1, 1), ' ');
         }
 
+    }
+
+    public boolean checkWalls(){
+        if (position.getX() == 30) {
+            return true;
+        } else if (position.getX() == 0) {
+            return true;
+        } else if (position.getY() == 30) {
+            return true;
+        } else if (position.getY() == 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean death() {
