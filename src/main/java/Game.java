@@ -9,22 +9,28 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+
 import java.io.IOException;
+
+
+
 
 public class Game {
     private Screen screen;
     private int width;
     private int height;
     private Snake s;
+    private Food f;
     private int grid;
 
     public Game() throws IOException {
-
-        s = new Snake(grid, grid);
-
         this.grid = 1;
         this.width = 30;
         this.height = 30;
+        s = new Snake(grid, grid);
+        f = new Food();
+
+
 
         TerminalSize terminalSize = new TerminalSize(width, height);
 
@@ -49,6 +55,7 @@ public class Game {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#828282"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         s.show(graphics);
+        f.show(graphics);
         s.update();
         screen.refresh();
     }
