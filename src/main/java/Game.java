@@ -16,11 +16,13 @@ public class Game {
     private int width;
     private int height;
     private Snake s;
+    private int grid;
 
     public Game() throws IOException {
 
-        s = new Snake();
+        s = new Snake(grid, grid);
 
+        this.grid = 1;
         this.width = 30;
         this.height = 30;
 

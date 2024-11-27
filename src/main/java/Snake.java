@@ -8,18 +8,30 @@ public class Snake {
     public int y;
     public int xspeed;
     public int yspeed;
+    public int grid;
 
-    public Snake(){
-        this.x = 1;
-        this.y = 1;
+    public Snake(int x, int y){
+        this.x = x;
+        this.y = y;
         this.xspeed = 1;
         this.yspeed = 0;
+        this.grid = 1;
     }
 
 
     public void update(){
         this.x += xspeed;
         this.y += yspeed;
+
+        if (this.x > 29){
+            this.x = 29;
+        } else if (this.x < 0){
+            this.x = 0;
+        } else if (this.y > 29){
+            this.y = 29;
+        } else if (this.y < 0){
+            this.y = 0;
+        }
 
     }
 
@@ -29,7 +41,7 @@ public class Snake {
     }
 
     public void dir(int x, int y){
-        this.xspeed = x;
-        this.yspeed= y;
+        this.xspeed = x*grid;
+        this.yspeed= y*grid;
     }
 }
