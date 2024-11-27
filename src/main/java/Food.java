@@ -2,25 +2,18 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+;
 
-import java.util.Random;
+public class Food extends Rectangle{
 
-public class Food {
-    public int x;
-    public int y;
-    public int grid;
-
-    public Food(){
-        Random rand = new Random();
-        this.grid = 1;
-        this.x = rand.nextInt(30);
-        this.y = rand.nextInt(30);
+    public Food(int x, int y){
+        super(x, y);
     }
 
 
     public void show(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FF0000"));
-        graphics.fillRectangle(new TerminalPosition(this.x, this.y), new TerminalSize(grid, grid), ' ');
+        graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
     }
 
 }

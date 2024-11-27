@@ -11,24 +11,26 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 
 import java.io.IOException;
-
-
+import java.util.Random;
 
 
 public class Game {
     private Screen screen;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private Snake s;
     private Food f;
-    private int grid;
+    private final int grid;
 
     public Game() throws IOException {
+        Random rand = new Random();
         this.grid = 1;
         this.width = 30;
         this.height = 30;
+        int foodx = rand.nextInt(width);
+        int foody = rand.nextInt(height);
         s = new Snake(grid, grid);
-        f = new Food();
+        f = new Food(foodx, foody);
 
 
 
@@ -56,9 +58,9 @@ public class Game {
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         s.update();
         s.show(graphics);
-        if (s.eat(f) == true){
+        /* f (s.eat(f) == true){
             f.show(graphics);
-        }
+        } */
         f.show(graphics);
         screen.refresh();
     }
@@ -83,13 +85,13 @@ public class Game {
 
     private void processKey(KeyStroke key) throws IOException {
         if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'w') {
-            s.dir(0, -1);
+            s.dir(0, -grid);
         } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'd') {
-            s.dir(1, 0);
+            s.dir(grid, 0);
         } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'a') {
-            s.dir(-1, 0);
+            s.dir(-grid, 0);
         } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 's') {
-            s.dir(0, 1);
+            s.dir(0, grid);
         } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
             screen.close();
         } else if (key.getKeyType() == KeyType.EOF) {
