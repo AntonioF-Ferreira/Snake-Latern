@@ -16,5 +16,10 @@ public class Food extends Rectangle{
         graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
     }
 
+
+    public Position getPosition(){
+        return position;
+    }
+
 }
 
