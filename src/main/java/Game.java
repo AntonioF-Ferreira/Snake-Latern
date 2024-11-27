@@ -3,6 +3,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -53,12 +54,34 @@ public class Game {
     public void run() throws IOException {
         while (true) {
             draw();
+            KeyStroke key = screen.pollInput();
+
+
+            if (key != null) {
+                processKey(key);
+            }
 
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void processKey(KeyStroke key) throws IOException {
+        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'w') {
+            s.dir(0, -1);
+        } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'd') {
+            s.dir(1, 0);
+        } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'a') {
+            s.dir(-1, 0);
+        } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 's') {
+            s.dir(0, 1);
+        } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+            screen.close();
+        } else if (key.getKeyType() == KeyType.EOF) {
+            System.exit(0);
         }
     }
 }
