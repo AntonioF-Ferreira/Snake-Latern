@@ -64,6 +64,14 @@ public class Snake extends Rectangle {
 
 
     public void dir(int x, int y) {
+
+
+        if (this.total > 0) {
+            if ((x != 0 && x == -xspeed) || (y != 0 && y == -yspeed)) {
+                return;
+            }
+        }
+
         this.xspeed = x * 1;
         this.yspeed = y * 1;
     }
