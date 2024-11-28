@@ -1,3 +1,7 @@
+package Entities;
+
+import Logic.Position;
+import Logic.Rectangle;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
