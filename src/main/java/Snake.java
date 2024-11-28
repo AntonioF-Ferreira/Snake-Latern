@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 
 public class Snake extends Rectangle {
-    public int xspeed;
-    public int yspeed;
-    public int total;
-    public ArrayList<Position> tail;
+    private int xspeed;
+    private int yspeed;
+    private int total;
+    private ArrayList<Position> tail;
 
     public Snake(int x, int y) {
         super(x, y);
@@ -22,22 +22,22 @@ public class Snake extends Rectangle {
 
 
     public void update() {
+        position.setX(position.getX() + xspeed);
+        position.setY(position.getY() + yspeed);
+
         this.tail.add(0, new Position(this.position.getX(), this.position.getY()));
         if (this.tail.size() > this.total + 1) {
             this.tail.remove(this.tail.size() - 1);
         }
-
-        position.setX(position.getX() + xspeed);
-        position.setY(position.getY() + yspeed);
     }
 
-    public void show(TextGraphics graphics) {
+    public void show(TextGraphics graphics, int width, int height) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
 
         for (Position pos : this.tail) {
             graphics.fillRectangle(
                     new TerminalPosition(pos.getX(), pos.getY()),
-                    new TerminalSize(1, 1), ' ');
+                    new TerminalSize(width, height), ' ');
         }
 
     }
@@ -61,20 +61,14 @@ public class Snake extends Rectangle {
             }
         }
 
-        this.xspeed = x * 1;
-        this.yspeed = y * 1;
+        this.xspeed = x;
+        this.yspeed = y;
     }
 
-    public Position getPosition() {
-        return position;
+    public void setTotal(int x){
+        this.total += x;
     }
 
-    public boolean eat(Position position) {
-        if (this.position.equals(position)) {
-            this.total += 1;
-            return true;
-        }
-        return false;
-    }
+
 
 }

@@ -11,15 +11,12 @@ public class Food extends Rectangle{
     }
 
 
-    public void show(TextGraphics graphics){
+    public void show(TextGraphics graphics, int width, int height){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FF0000"));
-        graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
+        graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(width, height), ' ');
     }
 
 
-    public Position getPosition(){
-        return position;
-    }
 
 }
 
