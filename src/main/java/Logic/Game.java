@@ -51,7 +51,7 @@ public class Game {
 
     private void gameover() throws IOException {
         screen.close();
-        System.out.print("Logic.Game Over!");
+        System.out.print("Game Over!");
     }
 
     public void run() throws IOException {
